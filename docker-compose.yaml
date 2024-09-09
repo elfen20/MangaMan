@@ -1,0 +1,28 @@
+# docker-compose.yaml
+# template file for container with external image from docker hub
+services:
+  # container name is defined here
+  mangaman:
+    # external image
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    # options
+    # keep STDIN open (interactive mode, -i)
+    stdin_open: true
+    # Allocate a pseudo-TTY ( -t )
+    tty: true
+    # environment variables
+    environment:
+      - TERM=xterm-256color
+    # bind volumes (existing folders mapped into the container) [source]:[mapped]
+    volumes:
+      - ./app:/app
+      - ./mangas:/mangas
+    # mapped ports
+    # ports:
+    #  - "8080:8080"
+    # set different user
+    # - user: node
+    # set working dir
+    #working_dir: /app
+    # run command on start
+    # command: dotnet MangaViewer.dll
